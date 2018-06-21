@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Developer manager</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script>
+
+        var config = {
+            apiKey: "AIzaSyD59VtQ6Q2-nQGKJIo2mRo6ZfcvoVnH0QY",
+            authDomain: "develoepr-manager.firebaseapp.com",
+            databaseURL: "https://develoepr-manager.firebaseio.com",
+            projectId: "develoepr-manager",
+            storageBucket: "develoepr-manager.appspot.com",
+            messagingSenderId: "132987399319"
+        };
+        var firebase = firebase.initializeApp(config);
+
+    </script>
+
+</head>
+
+<body>
+
+    <header class="p-3 text-center text-white">
+        <div class="container">
+            <h3 class="display-4">
+                <i class="fas fa-address-card"></i> Welcome </h3>
+            <button id="logoutBtn" class="btn btn-success float-right">Logout</button>
+            <a id="profileBtn" class="btn btn-primary float-left" href="./prfile.html">Profile</a>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row text-center">
+            <div class="col-sm-12 mt-4 col-lg-4 col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            <i class="fa fa-plus"></i> ADD DEVELOPER</h4>
+                    </div>
+                    <div class="card-footer">
+                        <button data-toggle="modal" data-target="#addDeveloperModal" class="btn  btn-block btn-outline-primary cstmBtn">Lets Start</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 mt-4 col-lg-4 col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            <i class="fa fa-trash"></i> REMOVE DEVELOPER</h4>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-block btn-outline-primary cstmBtn" data-target="#deleteModal" data-toggle="modal">Lets Start</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 mt-4 col-lg-4 col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>
+                            <i class="fa fa-pencil-alt"></i> UPDATE DEVELOPER</h4>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-block btn-outline-primary cstmBtn">Lets Start</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <section class="my-4 p-3">
+        <div class="container">
+            <div class="display-4 text-center text-white">All Records</div>
+            <table class="table table-dark text-center mt-4">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Job title</th>
+                        <th>GitHub</th>
+                    </tr>
+
+                </thead>
+                <tbody id="recordShower">
+
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Modals -->
+
+    <!-- modal for adding -->
+    <div class="modal fade" id="addDeveloperModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h5>Add Developer</h5>
+                    </div>
+                </div>
+                <form id="addDeveleporForm">
+                    <div class="modal-body">
+
+                        <input type="text" required id="name" class="form-control" placeholder="name">
+                        <br>
+                        <input type="email" required id="email" class="form-control" placeholder="email">
+                        <br>
+                        <input type="text" required id="title" class="form-control" placeholder="job title">
+                        <br>
+                        <input type="text" required id="linkToProfile" class="form-control" placeholder="paste Github link here: https://github.com/Rehan-Sattar">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-primary">Add</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal for deleting -->
+    <div class="modal fade" id="deleteModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        Delete developer
+                    </div>
+                </div>
+                <form id="deleteDeveloperForm">
+                    <div class="modal-body">
+                        <input type="email" required id="emailForDeletion" class="form-control" placeholder="Enter email of developer">
+
+                    </div>
+                    <div class="modal-footer">
+
+                        <button class="btn btn-outline-primary" type="submit">Delete</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+
+</html>
